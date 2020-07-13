@@ -7,8 +7,6 @@ import java.util.Set;
  * {@link FlightDao} represents a Data Access Object (DAO) for flights. The implementation is simplified, so it just
  * uses {@link HashSet} to store flight numbers.
  * <p>
- * todo: 1. Implement a method {@link FlightDao#register(String)} that store new flight number into the set
- * todo: 2. Implement a method {@link FlightDao#findAll()} that returns a set of all flight numbers
  */
 public class FlightDao {
     private Set<String> flights = new HashSet<>();
@@ -20,7 +18,7 @@ public class FlightDao {
      * @return {@code true} if a flight number was stored, {@code false} otherwise
      */
     public boolean register(String flightNumber) {
-        throw new UnsupportedOperationException();// todo: implement this method
+        return flights.add(flightNumber);
     }
 
     /**
@@ -29,7 +27,7 @@ public class FlightDao {
      * @return a set of flight numbers
      */
     public Set<String> findAll() {
-        throw new UnsupportedOperationException();// todo: implement this method
+        return flights;
     }
 
 }

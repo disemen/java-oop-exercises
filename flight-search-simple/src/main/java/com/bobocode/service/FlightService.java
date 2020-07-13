@@ -1,14 +1,22 @@
 package com.bobocode.service;
 
+import com.bobocode.data.FlightDao;
+
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * {@link FlightService} provides an API that allows to manage flight numbers
  * <p>
- * todo: 1. Using {@link com.bobocode.data.FlightDao} implement method {@link FlightService#registerFlight(String)}
- * todo: 2. Using {@link com.bobocode.data.FlightDao} implement method {@link FlightService#searchFlights(String)}
  */
 public class FlightService {
+
+    private FlightDao flightDao;
+
+    public FlightService(FlightDao flightDao) {
+        this.flightDao = flightDao;
+    }
 
     /**
      * Adds a new flight number
@@ -17,7 +25,7 @@ public class FlightService {
      * @return {@code true} if a flight number was added, {@code false} otherwise
      */
     public boolean registerFlight(String flightNumber) {
-        throw new UnsupportedOperationException("It's your job to implement this method");
+        return flightDao.register(flightNumber);
     }
 
     /**
@@ -27,6 +35,9 @@ public class FlightService {
      * @return a list of found flight numbers
      */
     public List<String> searchFlights(String query) {
-        throw new UnsupportedOperationException("It's your job to implement this method");
+        Set<String> all = flightDao.findAll();
+        return all.stream()
+                .filter(s -> s.contains(query))
+                .collect(Collectors.toList());
     }
 }
